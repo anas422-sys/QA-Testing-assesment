@@ -1,0 +1,37 @@
+Automated Test Scripts Using Cypress (JavaScript)
+
+Script for Successful Registration with Valid Data
+```javascript
+describe('Registration Form', () => {
+  it('should register successfully with valid data', () => {
+    cy.visit('/register');
+    cy.get('input[name="email"]').type('test@example.com');
+    cy.get('input[name="password"]').type('StrongPassword123!');
+    cy.get('input[name="confirmPassword"]').type('StrongPassword123!');
+    cy.get('input[name="firstName"]').type('John');
+    cy.get('input[name="lastName"]').type('Doe');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/welcome');
+  });
+});
+```
+
+Script for Registration with Optional Fields Filled
+```javascript
+describe('Registration Form', () => {
+  it('should register successfully with optional fields filled', () => {
+    cy.visit('/register');
+    cy.get('input[name="email"]').type('optional@example.com');
+    cy.get('input[name="password"]').type('AnotherStrongPassword123!');
+    cy.get('input[name="confirmPassword"]').type('AnotherStrongPassword123!');
+    cy.get('input[name="firstName"]').type('Jane');
+    cy.get('input[name="lastName"]').type('Smith');
+    cy.get('input[name="phoneNumber"]').type('123-456-7890');
+    cy.get('textarea[name="address"]').type('123 Main St, Anytown, USA');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/welcome');
+  });
+});
+```
+
+These scripts ensure that the key functionalities of the registration form, such as inputting valid data and handling optional fields, are tested.
